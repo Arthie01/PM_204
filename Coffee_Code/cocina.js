@@ -98,16 +98,61 @@ function buscarFilterCaros() {
     document.getElementById("lista").innerHTML = html || "<p>Sin resultados</p>";
 }
 
+// ========== PROMESAS - PREPARACIÓN DE CAFÉ ==========
+
+function prepararCafe() {
+    document.getElementById("resultado-cafe").innerHTML = "";
+    
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Agua calentada"), 1000);
+    })
+    .then(msg => {
+        document.getElementById("resultado-cafe").innerHTML += `<p>${msg}</p>`;
+        return new Promise(res => setTimeout(() => res("Cafe molido"), 1000));
+    })
+    .then(msg => {
+        document.getElementById("resultado-cafe").innerHTML += `<p>${msg}</p>`;
+        return new Promise(res => setTimeout(() => res("Cafe vertido"), 1000));
+    })
+    .then(msg => {
+        document.getElementById("resultado-cafe").innerHTML += `<p>${msg}</p>`;
+        document.getElementById("resultado-cafe").innerHTML += `<p style='color: green; font-weight: bold;'>¡Cafe listo!</p>`;
+    })
+    .catch(error => {
+        document.getElementById("resultado-cafe").innerHTML += `<p style='color: red;'>${error}</p>`;
+    });
+}
+
+function simularErrorCocina() {
+    document.getElementById("resultado-cafe").innerHTML = "";
+    
+    new Promise((resolve, reject) => {
+        setTimeout(() => reject("Error en la cocina: Maquina descompuesta"), 1000);
+    })
+    .catch(error => {
+        document.getElementById("resultado-cafe").innerHTML = `<p style='color: red;'>${error}</p>`;
+    });
+}
+
+function simularFaltaIngrediente() {
+    document.getElementById("resultado-cafe").innerHTML = "";
+    
+    const ingredientes = ["Cafe", "Agua", "Azucar", "Leche"];
+    const falta = ingredientes[Math.floor(Math.random() * ingredientes.length)];
+    
+    new Promise((resolve, reject) => {
+        setTimeout(() => reject("Falta ingrediente: " + falta), 1000);
+    })
+    .catch(error => {
+        document.getElementById("resultado-cafe").innerHTML = `<p style='color: red;'>${error}</p>`;
+    });
+}
+
 function buscarFilterPorTipo() {
     const tipo = document.getElementById("filtroTipo").value;
-    console.log("Tipo seleccionado:", tipo);
-    console.log("Productos disponibles:", productoscocina);
-    
     const porTipo = productoscocina.filter(p => p.tipo === tipo);
-    console.log("Productos filtrados:", porTipo);
     
     let html = "";
-    
     porTipo.forEach(p => {
         html += `
             <div class="producto-item">
