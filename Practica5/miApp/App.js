@@ -14,8 +14,8 @@ export default function App() {
       <Image source={require('./assets/wave.png')}/>
       <Text>Hola mundo RN</Text>
 
-        <Perfil nombre="Artemio" carrera = "ISC" materia = "Progaramcion movil" profesor = "Ivan Isay" cuatri = "9"></Perfil>
-        <Perfil nombre="Carlos" carrera = "IN" materia = "Progaramcion movil" profesor = "Ivan Isay" cuatri = "7"></Perfil>
+        <Perfil nombre="Artemio" carrera = "ISC" materia = "Progaramcion movil" profesor = "Ivan Isay" cuatri = "9"/>
+        <Perfil nombre="Carlos" carrera = "IN" materia = "Progaramcion movil" profesor = "Ivan Isay" cuatri = "7"/>
 
         
 
