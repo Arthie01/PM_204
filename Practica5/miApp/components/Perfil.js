@@ -1,14 +1,14 @@
 import { Text, Image, View } from "react-native";
 
-export const Perfil = ()=>{
+export const Perfil = (props)=>{
     return (
             <View>
                 <Image source={require('../assets/UPQ-Logo.png')}/> 
-                <Text>Artemio Hurtado Hernandez</Text> 
-                <Text>Sistemas Computacionales</Text>
-                <Text>Programacion movil</Text> 
-                <Text>Profesor Ivan Isay GUerra Lopez</Text>
-                <Text>9no cuatrimestre</Text> 
+                <Text>{props.nombre}</Text> 
+                <Text>{props.carrera}</Text>
+                <Text>{props.materia}</Text> 
+                <Text>{props.profesor}</Text>
+                <Text>{props.cuatri}</Text> 
             </View>
     )
 } 
