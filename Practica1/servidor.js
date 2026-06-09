@@ -10,7 +10,6 @@ console.log((edad1 + edad2)/2)
 console.time("miProceso")
 
     for(let i = 0; i < 10; i++){
-
     }
 
 console.timeEnd("miProceso")
