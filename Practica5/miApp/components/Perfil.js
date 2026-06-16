@@ -1,29 +1,52 @@
 /*Perfil usanod desesctructuracion*/
 
-import { Text, Image, View, Button} from "react-native";
+import { Text, Image, View, Button, StyleSheet} from "react-native";
 import React , {useState} from 'react';
 
-export const Perfil = ({nombre, carrera, materia, profesor, cuatri})=>{
+export const Perfil = ({nombre, carrera, materia, profesor, cuatri, style})=>{
     const [mostrar, setMostrar] = useState(false)
     return (
-            <View>
+            <View style={[styles.tarjeta, style]}>
                 <Image source={require('../assets/UPQ-Logo.png')}/> 
-                <Text>{nombre}</Text> 
+                <Text style={styles.nombre}>{nombre}</Text> 
 
                 {mostrar &&
                 <>
-                <Text>{carrera}</Text>
-                <Text>{materia}</Text> 
+                <Text style={styles.carrera}>{carrera}</Text>
+                <Text style={styles.otroTexto}>{materia}</Text> 
                 <Text>{profesor}</Text>
                 <Text>{cuatri}</Text> 
                 </>
                 }
                 <Button title="Ver perfil" onPress={()=>setMostrar(!mostrar)}/>
-
-
             </View>
     )
 } 
+
+const styles = StyleSheet.create({
+    nombre: {
+        fontSize: 24,
+        fontWeight: 600,
+        textTransform: 'uppercase',
+    },
+    tarjeta: {
+        borderWidth: 2,
+        padding: 15, 
+        margin: 10,
+        
+
+    },
+    carrera: {
+        fontSize: 18,
+        color: 'blue',
+        fontFamily: 'Roboto',
+    },
+    otroTexto: {
+        fontSize: 12,
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
+    },
+});
 
 
 
