@@ -2,7 +2,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import TarjetaScreen from './TarjetaScreen';
 import SafeAreaScreen from './SafeAreaScreen';
 import PressableScreen from './PressableScreen';
@@ -14,79 +14,75 @@ import ModalBottomScreen from './ModalBottomScreen';
 export default function MenuScreen() {
     const [screen, setScreen] = useState('menu');
 
-    switch(screen){
+    switch (screen) {
         case 'tarjetas':
-            return <TarjetaScreen/>
+            return <TarjetaScreen />;
         case 'SafeArea':
-            return <SafeAreaScreen/>
+            return <SafeAreaScreen />;
         case 'Pressable':
-            return <PressableScreen/>
+            return <PressableScreen />;
         case 'TextInput':
-            return <TextInputAlertScreen/>
+            return <TextInputAlertScreen />;
         case 'FlatList':
-            return <FlatListSectionScreen/>
+            return <FlatListSectionScreen />;
         case 'Image':
-            return <ImageBackgroundSlapshScreen/>
+            return <ImageBackgroundSlapshScreen />;
         case 'Activity':
-            return <ActivityIndicatorScreen/>
+            return <ActivityIndicatorScreen />;
         case 'Modal':
-            return <ModalBottomScreen/>
+            return <ModalBottomScreen />;
         case 'menu':
-            default:
+        default:
+            return (
+                <View style={styles.menuContainer}>
+                    <View style={styles.container}>
+                        <Button title='Practica Tarjetas' onPress={() => setScreen('tarjetas')} />
+                    </View>
 
-                return (
-                    <>
-                        <View style={styles.container}>
-                            <Button title= 'Practica Tarjetas' onPress={() => setScreen('tarjetas')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica SafeArea' onPress={() => setScreen('SafeArea')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica SafeArea' onPress={() => setScreen('SafeArea')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica Pressable & switch' onPress={() => setScreen('Pressable')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica Pressable & swtich' onPress={() => setScreen('Pressable')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica TextInput & Alert' onPress={() => setScreen('TextInput')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica TextInput & Alert' onPress={() => setScreen('TextInput')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica FlatList & section' onPress={() => setScreen('FlatList')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica FlatList & section' onPress={() => setScreen('FlatList')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica ImageBackground & SplashScreen' onPress={() => setScreen('Image')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica ImageBackground & SlapshScreen' onPress={() => setScreen('Image')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica ActivityIndicator & keyboardAvoiding' onPress={() => setScreen('Activity')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica ActivityIndicator & keyboardAvoiding' onPress={() => setScreen('Activity')}/>
-                        </View>
+                    <View style={styles.container}>
+                        <Button title='Practica Modal & Bottom sheet' onPress={() => setScreen('Modal')} />
+                    </View>
 
-                        <View style={styles.container}>
-                            <Button title= 'Practica Modal & Bottom sheet' onPress={() => setScreen('Modal')}/>
-                        </View>
-
-
-                        <StatusBar style="auto" />
-
-
-                    </>
-                );
-                }
-
+                    <StatusBar style="auto" />
+                </View>
+            );
+    }
 }
 
 /*ZONA3: estilos y posicionamientos*/
 
 const styles = StyleSheet.create({
-container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column-reverse',
-},
-
+    menuContainer: {
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+    },
+    container: {
+        paddingVertical: 8,
+        alignItems: 'center',
+    },
 });
