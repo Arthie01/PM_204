@@ -10,6 +10,7 @@ import TextInputAlertScreen from './TextInputAlertScreen';
 import FlatListSectionScreen from './FlatListSectionScreen';
 import ImageBackgroundSlapshScreen from './ImageBackgroundSlapshScreen';
 import ModalBottomScreen from './ModalBottomScreen';
+import ActivityIndicatorScreen from './ActivityIndicatorScreen';
 
 export default function MenuScreen() {
     const [screen, setScreen] = useState('menu');
