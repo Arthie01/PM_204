@@ -1,9 +1,49 @@
 import React, { useState } from 'react';
-import {View,SafeAreaView,Text,TextInput,Pressable,StyleSheet,} from 'react-native';
+import {View,SafeAreaView,Text,TextInput,Pressable,StyleSheet, Alert, Platform} from 'react-native';
 
 export default function AltaUsuariosScreen() {
   const [nombre, setNombre] = useState('');
   const [edad, setEdad] = useState('');
+  const [cargando, setCargando]= useState(false);
+
+  const mostrarMensaje = (titulo, mensaje)=>{
+    if (Platform.OS == 'web') {
+      window.alert(`${titulo}\n ${mensaje}`);
+    }else{
+      Alert.alert(titulo, mensaje);
+    }
+  }
+
+  const guardarUsuario= async()=>{
+    if(nombre.trim()=== '' || edad.trim() === ''){
+      mostrarMensaje("Vacios", "Completa edad y nombre en el formulario")
+      return;
+    }
+
+    try{
+      setCargando(true);
+      const respuesta = await fetch('http://192.168.1.215:5002/v1/usuarios/', 
+        {
+          method:"POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({nombre:nombre, edad:Number(edad)})
+        }
+      );
+      const dato = await respuesta.json();
+      console.log(datos);
+      mostrarMensaje("Exito", "Usuario registrado");
+
+      setNombre('');
+      setEdad('');
+    } catch(error){
+      mostrarMensaje("Error", "No fue posible guardarlo");
+      console.log(error);
+    }
+
+    finally{
+      setCargando(false);
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,9 +69,9 @@ export default function AltaUsuariosScreen() {
           onChangeText={setEdad}
         />
 
-        <Pressable style={styles.boton}>
+        <Pressable style={styles.boton} onPress={guardarUsuario} disabled = {cargando}>
           <Text style={styles.textoBoton}>
-            Agregar Usuario
+            {cargando? "cargando......":"agregar usuario"}
           </Text>
         </Pressable>
 
